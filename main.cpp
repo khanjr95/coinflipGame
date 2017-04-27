@@ -6,8 +6,9 @@ using namespace std;
 void playGame();
 char playValid(char);
 void coinguess();
-void coinflip();
+int coinFlip(int);
 int coinValid(int);
+int balance(int, int);
 
 int main()
 {
@@ -17,9 +18,8 @@ int main()
 
 	playGame();
 
-
-
-
+	auto x = rand();
+	
 
 
 	return 0;
@@ -28,29 +28,29 @@ int main()
 void playGame()
 {
 	char play;
-	
+
 	cout << "Would you like to play the Game (Y/N)" << endl;
 	cin >> play;
-	play=toupper(play);
+	play = toupper(play);
 	playValid(play);
-	
+
 }
 
 char playValid(char play)//get this to work
 {
-	system("cls");
 	cout << play << endl;
-	system("pause");
+	//system("pause");
 	if (play == 'Y')
 	{
 		coinguess();
-		cout << "" << endl; 
+		cout << "" << endl;
 		playGame();
-	
+
 	}
-	else if (play=='N')
+	else if (play == 'N')
 	{
-		cout << "Thank you for playing. Your balance is $" << endl;//get balance 
+		cout << "Thank you for playing."<< endl;//get balance 
+		cout << "Goodbye!" << endl;
 	}
 
 	else
@@ -58,7 +58,7 @@ char playValid(char play)//get this to work
 		cout << "Wrong option entered. Going back to first menu" << endl;
 		playGame();
 	}
-	
+
 
 	return play;
 }
@@ -70,6 +70,12 @@ void coinguess()
 	cin >> coinpick;
 	coinValid(coinpick);
 	
+	coinFlip(coinpick);
+	//cout << flip <<","<< coinpick << endl;
+	//balance(coinpick, flip);
+
+	//cout << "Your balance is " << balance(coinpick) << endl;
+
 }
 
 int coinValid(int coinpick)
@@ -85,7 +91,47 @@ int coinValid(int coinpick)
 	return coinpick;
 }
 
-void coinflip()
+int coinFlip(int coinpick)
 {
+	int flip;
+	flip = rand() % 2 + 1;
+	if (flip == 0)
+		cout << "The machine flip was heads." << endl;
+	else
+		cout << "The machine flip was tails." << endl;
+	
+	if (coinpick == flip)
+	{
+		balance(coinpick, flip);
+	}
+	else
+	{
+		balance(coinpick, flip);
+	}
 
+	return flip;
+}
+
+int balance(int coinpick, int flip)
+{
+	int userMoney = 15; // this value keeps the addition/subtraction at 16 or 14. fix this.
+
+	while (userMoney != 0)
+	{
+		cout << coinpick<<","<< flip << endl;
+		if (coinpick == flip)
+		{
+			cout << "Congrats you won this bet" << endl;
+			userMoney++;
+		}
+		else
+		{
+			cout << "Sorry, you lost this bet" << endl;
+			userMoney--;
+		}
+		cout << "Your balance is " << userMoney << endl; break;
+	}
+
+	
+	return userMoney;
 }
