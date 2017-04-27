@@ -4,8 +4,8 @@
 using namespace std;
 
 void playGame();
-int menuValid(int);
-
+char menuValid(char play);
+void coinflip();
 
 int main()
 {
@@ -15,7 +15,7 @@ int main()
 
 	playGame();
 
-	
+
 
 
 
@@ -30,22 +30,41 @@ void playGame()
 	cout << "Would you like to play the Game (Y/N)" << endl;
 	cin >> play;
 	play=toupper(play);
+	menuValid(play);
 	
 }
 
 char menuValid(char play)//get this to work
 {
 	system("cls");
-	while (play = 'Y' && 'N')
+	cout << play << endl;
+	system("pause");
+	if (play == 'Y')
 	{
-		if (play = 'Y') {}
-		//{coinflip();}
-		else { cout << "Thank you for playing. Your balance is $" << endl; }//get balance 
-	}
+		coinflip();
+		cout << "Thank you for playing. Your balance is $" << endl; //get balance 
+		playGame();
 	
+	}
+	else if (play=='N')
 	{
-		cout << "You have not input valid option, please try again.(Y/N)" << endl;
+		cout << "GOOGLE" << endl;
 	}
 
+	else
+	{
+		cout << "Wrong option entered. Bringing back to front menu" << endl;
+		playGame();
+	}
+	
+
 	return play;
+}
+
+void coinflip()
+{
+	cout << "Pick 1)Heads or 2)Tails, and then I'll flip the coin." << endl;
+
+	
+	
 }
