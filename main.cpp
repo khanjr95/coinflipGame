@@ -5,6 +5,7 @@ using namespace std;
 
 void playGame();
 char playValid(char);
+void coinguess();
 void coinflip();
 int coinValid(int);
 
@@ -42,7 +43,7 @@ char playValid(char play)//get this to work
 	system("pause");
 	if (play == 'Y')
 	{
-		coinflip();
+		coinguess();
 		cout << "" << endl; 
 		playGame();
 	
@@ -62,7 +63,7 @@ char playValid(char play)//get this to work
 	return play;
 }
 
-void coinflip()
+void coinguess()
 {
 	cout << "Pick 1)Heads or 2)Tails, and then I'll flip the coin." << endl;
 	int coinpick;
@@ -73,7 +74,18 @@ void coinflip()
 
 int coinValid(int coinpick)
 {
-	cout << coinpick << endl;
-	system("pause");
+	//cout << coinpick << endl;
+	while (coinpick != 1 && coinpick != 2)
+	{
+		cout << "Wrong choice selected, Please pick from 1 or 2!" << endl;
+		cin >> coinpick;
+		coinValid(coinpick);
+	}
+
 	return coinpick;
+}
+
+void coinflip()
+{
+
 }
